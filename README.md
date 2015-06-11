@@ -1,44 +1,39 @@
-## Conchology ##
+# Conchology
 
-It's all about shells. Get it?
+Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/conchology`. To experiment with that code, run `bin/console` for an interactive prompt.
 
-Really, this is just a friendlier wrapper around Open4, because Open4 is
-pretty bloody great, but feels like a real pain to actually use. Sometimes,
-it just plain makes more sense to call out to the pipeline than it does to
-try to use Ruby for shell scripting. When that happes, we use Conchology.
+TODO: Delete this and the text above, and describe your gem
 
-Granted, Conchology doesn't provide the full Open4 API just yet, because we
-haven't needed it. Instead, we craft the commands that we run through
-Concholog::Command in a fire-and-forget manner so we don't have to worry about
-interactive processes.
+## Installation
 
-### Command ###
+Add this line to your application's Gemfile:
 
-The Conchology::Command class must be initialized with a string, the command
-that you want to run in the shell. This can be just about anything, really,
-but your best bet is to use absolute paths, so on. Here's a crap example:
+```ruby
+gem 'conchology'
+```
 
-    truecmd = Conchology::Command.new('true')
+And then execute:
 
-Once you initialize the command, you can run it, and that will set up the
-object readers (output, error, and exitstatus).
+    $ bundle
 
-    truecmd.run
-    truecmd.exitstatus # An integer representing the exit status of the command
-    truecmd.output # The split(/\n)'d stdpit output of the command
-    truecmd.error # The split(/\n)'d stderr output of the command
+Or install it yourself as:
 
-If you attempt to grab info from these readers before you run the command,
-nothing particularly nasty will happen. The exit status will be -1, and the
-output and error will both be empty arrays.
+    $ gem install conchology
 
-But ... what if you don't want to actually instantiate it, but really do want
-to do as close to a fire-and-forget as you can get without being a negligent
-admin? Use the class-level run method!
+## Usage
 
-    trueresults = Conchology::Command.run('true')
+TODO: Write usage instructions here
 
-This returns a hash that contains :exitstatus, :output, and :error entries that
-are as described above.
+## Development
 
-That's all there is to it right now. Enjoy!
+After checking out the repo, run `bin/setup` to install dependencies. Then, run `bin/console` for an interactive prompt that will allow you to experiment.
+
+To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release` to create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+
+## Contributing
+
+1. Fork it ( https://github.com/[my-github-username]/conchology/fork )
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create a new Pull Request
